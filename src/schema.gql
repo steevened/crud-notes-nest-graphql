@@ -1,0 +1,21 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Todo {
+  """TODO Unique ID"""
+  id: Int!
+
+  """TODO title"""
+  description: String!
+
+  """TODO state"""
+  completed: Boolean!
+}
+
+type Query {
+  data: String!
+  random: Float!
+  randomFromZeroTo(to: Int): Int!
+  todos: [Todo!]!
+}
