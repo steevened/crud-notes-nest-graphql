@@ -14,8 +14,6 @@ type Todo {
 }
 
 type Query {
-  data: String!
-  random: Float!
-  randomFromZeroTo(to: Int): Int!
   todos: [Todo!]!
+  todo(id: Int!): Todo!
 }

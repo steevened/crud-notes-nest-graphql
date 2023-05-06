@@ -2,7 +2,7 @@ import { join } from 'path';
 import { Module } from '@nestjs/common';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { GraphQLModule } from '@nestjs/graphql';
-import { FirstModule } from './first/first.module';
+
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { TodoModule } from './todo/todo.module';
 
@@ -14,7 +14,6 @@ import { TodoModule } from './todo/todo.module';
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
-    FirstModule,
     TodoModule,
   ],
   controllers: [],
