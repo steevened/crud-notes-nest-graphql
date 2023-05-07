@@ -1,8 +1,9 @@
-import { Args, Int, Query, Resolver } from '@nestjs/graphql';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Todo } from './entity/todo.etity';
 import { TodoService } from './todo.service';
+import { CreateTodoInput, UpdateTodoInput } from './entity/dto/inputs/';
 
-@Resolver()
+@Resolver(() => Todo)
 export class TodoResolver {
   constructor(private readonly todoService: TodoService) {}
 
@@ -16,15 +17,18 @@ export class TodoResolver {
     return this.todoService.findOne(id);
   }
 
-  createTodo() {
-    return;
+  @Mutation(() => Todo)
+  createTodo(@Args('CreateTodoInput') createTodoInput: CreateTodoInput) {
+    return this.todoService.create(createTodoInput);
   }
 
-  updateTodo() {
-    return;
+  @Mutation(() => Todo)
+  updateTodo(@Args('UpdateTodoInput') updateTodoInput: UpdateTodoInput) {
+    return this.todoService.update(updateTodoInput.id, updateTodoInput);
   }
 
-  removeTodo() {
-    return;
+  @Mutation(() => Boolean)
+  removeTodo(@Args('id', { type: () => Int }) id: number) {
+    return this.todoService.delete(id);
   }
 }
