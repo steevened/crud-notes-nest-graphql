@@ -13,9 +13,21 @@ type Todo {
   completed: Boolean!
 }
 
+"""Todo quick aggregation"""
+type AggregationType {
+  total: Int!
+  pending: Int!
+  completed: Int!
+  totalTodosCompleted: Int! @deprecated(reason: "Don't use, use completed instead")
+}
+
 type Query {
-  todos: [Todo!]!
+  todos(completed: Boolean): [Todo!]!
   todo(id: Int!): Todo!
+  totalTodos: Int!
+  completedTodos: Int!
+  pendingTodos: Int!
+  aggregations: AggregationType!
 }
 
 type Mutation {
